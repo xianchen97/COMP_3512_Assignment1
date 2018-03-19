@@ -13,6 +13,7 @@ class Matrix
 
 public:
 	Matrix(std::string);
+	Matrix(int dimension);
 	Matrix(const Matrix&);
 	~Matrix();
 	inline void set_value(std::string user_input, std::ifstream file);

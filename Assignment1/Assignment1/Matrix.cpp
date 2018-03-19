@@ -16,6 +16,9 @@ Matrix::Matrix(std::string file_name) {
 
 }
 
+Matrix::Matrix(int dimension) : dimension{ dimension } {
+};
+
 Matrix::Matrix(const Matrix & other) : dimension{ other.dimension }
 {
 	for (int i = 0; i < dimension * dimension; ++i) {
