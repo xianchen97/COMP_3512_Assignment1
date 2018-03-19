@@ -1,7 +1,6 @@
 #pragma once
-#include "Matrix.hpp"
+#include "Matrix.cpp"
 class PageRank {
-
 
 	Matrix user_matrix;
 	Matrix connectivity;

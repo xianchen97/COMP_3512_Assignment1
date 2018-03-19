@@ -10,7 +10,12 @@ void PageRank::create_connectivity()
 			if (user_matrix.get_value(j,i) != 0) {
 				num_of_elements++;
 			}
+			
 		}
 	}
+}
+
+void PageRank::create_dynamical()
+{
 }
 

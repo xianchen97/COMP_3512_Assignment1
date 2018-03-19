@@ -116,10 +116,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.hpp" />
+    <ClInclude Include="oldMatrix.hpp" />
     <ClInclude Include="PageRank.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="oldMatrix.cpp" />
     <ClCompile Include="PageRank.cpp" />
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
