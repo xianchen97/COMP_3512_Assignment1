@@ -3,15 +3,16 @@
 #include <sstream>
 
 Matrix::Matrix(std::string file_name) {
-	int line;
+	int var;
 	Matrix::open_file(file_name);
 	while (file >> var) {
-		if (!isdigit(line)) {
-			std::cerr << "Your matrix should only contain numbers";
-		}
 		contents.push_back(var);
+	}	
+	int size = contents.size() / 2;
+	if (size*size != contents.size()) {
+		std::cerr << "Incorrect Matrix size";
 	}
-	if()
+	dimension = size;
 
 }
 
