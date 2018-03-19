@@ -27,6 +27,11 @@ Matrix::Matrix(const Matrix & other) : dimension{ other.dimension }
 }
 
 
+inline int Matrix::get_dimension()
+{
+	return dimension;
+}
+
 inline int Matrix::get_value(int row, int column) const
 {
 	return contents[row * dimension + column];

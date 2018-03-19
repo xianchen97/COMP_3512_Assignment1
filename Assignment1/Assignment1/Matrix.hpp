@@ -17,6 +17,7 @@ public:
 	Matrix(const Matrix&);
 	~Matrix();
 	inline void set_value(std::string user_input, std::ifstream file);
+	inline int get_dimension();
 	inline int get_value(int, int) const;
 	void clear();
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& matrix);
