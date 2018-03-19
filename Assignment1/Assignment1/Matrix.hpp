@@ -38,5 +38,5 @@ public:
 	friend Matrix operator+(Matrix lhs, const Matrix& rhs);
 	Matrix& operator-=(const Matrix& rhs);
 	friend Matrix operator-(Matrix lhs, const Matrix& rhs);
-	void open_file(std::string);
+	std::ifstream open_file(std::string);
 };

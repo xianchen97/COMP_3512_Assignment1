@@ -1,6 +1,9 @@
 #include "Matrix.hpp"
 #include <cmath>
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
 
 Matrix::Matrix() : dimension{ 1 }
 {
@@ -28,6 +31,23 @@ Matrix::Matrix(int an_array[], int size)
 }
 
 Matrix::Matrix(std::string user_input) {
+
+	std::ifstream file;
+	file.open(user_input);
+	int var;
+	std::vector<int> v;
+	std::istringstream iss;
+	if (!file) {
+		std::cerr << "Unable to open file";
+	}
+	else {
+		while (file >> var) {
+			v.push_back(var);
+		}
+		int * input_array = &v[0];
+		Matrix a = Matrix(input_array, v.size());
+	}
+}
 
 }
 
