@@ -1,51 +1,93 @@
 #include "PageRank.hpp"
 #include <vector>
 
+
+/*
+Constructor initialize all matrixes to have their base sizes.
+*/
 PageRank::PageRank(std::string user_input)
 {
 	Matrix a = Matrix(user_input);
 	user_matrix = a;
 	probability_matrix = user_matrix;
 	dynamical_matrix = Matrix(user_matrix.get_dimension());
+	matrix_Q = user_matrix;
+	matrix_dim = user_matrix.get_dimension();
+	dynamical = new double[matrix_dim];
 }
 
+/* Prints out the probability matrix. */
 void PageRank::print_prob_matrix() {
-	std:: cout << user_matrix;
+	std:: cout << probability_matrix;
 }
 
+/* Prints out Matrix Q. */
+void PageRank::print_matrix_Q() {
+	std::cout << matrix_Q;
+}
+
+/* 
+Calculates the importance and generates the transition matrix.
+Precondition: A user_matrix exists.
+Postcondition: transition matrix created.*/
 void PageRank::importance()
 {
 	std::vector<double> sums;
 	int col_sum;
-	int dim = user_matrix.get_dimension();
-	for (int i = 0; i < user_matrix.get_dimension(); ++i) {
+	for (int i = 0; i < matrix_dim; ++i) {
 		col_sum = 0;
-		for (int j = 0; j < user_matrix.get_dimension(); ++j) {
+		for (int j = 0; j < matrix_dim; ++j) {
 			col_sum += user_matrix.get_value(j, i);
 		}
 		sums.push_back(col_sum);	
 	}
 
-	for (int k = 0; k < user_matrix.get_dimension(); ++k) {
-		for (int q = 0; q < user_matrix.get_dimension(); ++q) {
+	for (int k = 0; k < matrix_dim; ++k) {
+		for (int q = 0; q < matrix_dim; ++q) {
 			if(sums[q] == 0){
 				double val = 1 / (double)user_matrix.get_dimension();
-				user_matrix.set_value(k, q, val);
+				probability_matrix.set_value(k, q, val);
 			}
 			else {
-				user_matrix.set_value(k, q, user_matrix.get_value(k, q) / sums[q]);
+				probability_matrix.set_value(k, q, user_matrix.get_value(k, q) / sums[q]);
 			}
+		}
+	}
+
+	
+}
+
+/*
+Generates Matrix_Q.
+Each element if the matrix is 1/dim.
+Precondition: Matrix dimensions are initialized.
+Postconidtion: Creates a matrix where each element in the matrix is 1/dim.
+*/
+void PageRank::generateQ() {
+	for (int k = 0; k < matrix_dim; ++k) {
+		for (int q = 0; q < matrix_dim; ++q) {
+			double val = 1 / (double)matrix_Q.get_dimension();
+			matrix_Q.set_value(k, q, val);
 		}
 	}
 }
 
-void PageRank::generateQ() {
-	Matrix q = user_matrix;
-	for (int k = 0; k < q.get_dimension(); ++k) {
-		for (int q = 0; q < q.get_dimension(); ++q) {
-			double val = 1 / (double)q.get_dimension();
-			user_matrix.set_value(k, q, val);
-		}
-	}
+
+/*
+Creates the transition matrix_m.
+Precondition: probability_matrix and matrix_Q created.
+Postconditon: Transition matrix is created.
+Return: The transtion matrix.
+*/
+Matrix PageRank::transition()
+{
+	std::cout << probability_matrix * p << std::endl;
+	Matrix m = (probability_matrix*p) + (matrix_Q*p);
+	return m;
 }
+
+void PageRank::multiply() {
+
+}
+
 

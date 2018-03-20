@@ -31,6 +31,11 @@ Matrix::Matrix(int an_array[], int size)
 	}
 }
 
+/*
+The matrix reads a text file and creates a matrix.
+PRECONDITION: User file exists and correct path is passed in.
+POSTCONDITION: Matrix created based on input of the text file.
+*/
 Matrix::Matrix(std::string user_input) {
 
 	std::ifstream file;
@@ -153,14 +158,15 @@ Matrix & Matrix::operator+=(const Matrix & rhs)
 	return *this;
 }
 
-Matrix & Matrix::operator*=(const Matrix & rhs)
+Matrix & Matrix::operator*=(const double p)
 {
 	for (int i = 0; i < dimension; ++i) {
 		for (int j = 0; j < dimension; ++j) {
-			contents[i * dimension + j] *=
-				rhs.contents[i * dimension + j];
+			double val = contents[i * dimension + j] * p;
+			contents[i * dimension + j] = val;
 		}
 	}
+	std::cout << "THE MATRIX : \n" << *this << std::endl;
 	return *this;
 }
 
@@ -239,8 +245,8 @@ Matrix operator+(Matrix lhs, const Matrix & rhs)
 	return lhs;
 }
 
-Matrix operator*(Matrix lhs, const Matrix & rhs) {
-	lhs *= rhs;
+Matrix operator*(Matrix lhs, const double p) {
+	lhs *= p;
 	return lhs;
 }
 

@@ -34,8 +34,8 @@ public:
 	Matrix& operator=(Matrix rhs);
 	friend void swap(Matrix& lhs, Matrix& rhs);
 	Matrix& operator+=(const Matrix& rhs);
-	friend Matrix operator*(Matrix lhs, const Matrix& rhs);
-	Matrix& operator*=(const Matrix& rhs);
+	friend Matrix operator*(Matrix lhs, const double p);
+	Matrix& operator*=(const double p);
 	friend Matrix operator+(Matrix lhs, const Matrix& rhs);
 	Matrix& operator-=(const Matrix& rhs);
 	friend Matrix operator-(Matrix lhs, const Matrix& rhs);
