@@ -1,14 +1,12 @@
 #pragma once
 
-#pragma once
-
 #include <iostream>
 #include <string.h>
 
 class Matrix
 {
 	int dimension;
-	int * contents;
+	double * contents;
 
 public:
 	Matrix();
@@ -17,8 +15,9 @@ public:
 	Matrix(const Matrix&);
 	Matrix(std::string);
 	~Matrix();
-	inline void set_value(int, int, int);
-	inline int get_value(int, int) const;
+	void set_value(int, int, double);
+	int get_value(int, int) const;
+	int get_dimension();
 	void clear();
 	Matrix identity();
 	friend std::ostream& operator<<(std::ostream& out, const Matrix& matrix);
@@ -35,8 +34,11 @@ public:
 	Matrix& operator=(Matrix rhs);
 	friend void swap(Matrix& lhs, Matrix& rhs);
 	Matrix& operator+=(const Matrix& rhs);
+	friend Matrix operator*(Matrix lhs, const Matrix& rhs);
+	Matrix& operator*=(const Matrix& rhs);
 	friend Matrix operator+(Matrix lhs, const Matrix& rhs);
 	Matrix& operator-=(const Matrix& rhs);
 	friend Matrix operator-(Matrix lhs, const Matrix& rhs);
-	std::ifstream open_file(std::string);
+
+
 };

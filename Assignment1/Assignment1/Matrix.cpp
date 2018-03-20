@@ -4,16 +4,17 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <iomanip>
 
 Matrix::Matrix() : dimension{ 1 }
 {
-	contents = new int[1];
+	contents = new double[1];
 	clear();
 }
 
 Matrix::Matrix(int dimension) : dimension{ dimension }
 {
-	contents = new int[dimension * dimension];
+	contents = new double[dimension * dimension];
 	clear();
 
 }
@@ -24,7 +25,7 @@ Matrix::Matrix(int an_array[], int size)
 	if (dimension * dimension != size) {
 		std::cout << "Invalid array size" << std::endl;
 	}
-	contents = new int[size];
+	contents = new double[size];
 	for (int i = 0; i < size; ++i) {
 		contents[i] = an_array[i];
 	}
@@ -46,28 +47,34 @@ Matrix::Matrix(std::string user_input) {
 		}
 		int * input_array = &v[0];
 		Matrix a = Matrix(input_array, v.size());
+		swap(*this, a);
+		
 	}
 }
 
-}
 
 Matrix::Matrix(const Matrix & other) : dimension{ other.dimension }
 {
-	contents = new int[dimension * dimension];
+	contents = new double[dimension * dimension];
 	for (int i = 0; i < dimension * dimension; ++i) {
 		contents[i] = other.contents[i];
 	}
 }
 
-inline void Matrix::set_value(int row, int column, int value)
+void Matrix::set_value(int row, int column, double value)
 {
 	int index = row * dimension + column;
 	contents[index] = value;
 }
 
-inline int Matrix::get_value(int row, int column) const
+ int Matrix::get_value(int row, int column) const
 {
 	return contents[row * dimension + column];
+}
+
+int Matrix::get_dimension()
+{
+	return dimension;
 }
 
 void Matrix::clear()
@@ -146,6 +153,17 @@ Matrix & Matrix::operator+=(const Matrix & rhs)
 	return *this;
 }
 
+Matrix & Matrix::operator*=(const Matrix & rhs)
+{
+	for (int i = 0; i < dimension; ++i) {
+		for (int j = 0; j < dimension; ++j) {
+			contents[i * dimension + j] *=
+				rhs.contents[i * dimension + j];
+		}
+	}
+	return *this;
+}
+
 Matrix & Matrix::operator-=(const Matrix & rhs)
 {
 	for (int i = 0; i < dimension; ++i) {
@@ -167,7 +185,7 @@ std::ostream & operator<<(std::ostream & out, const Matrix & matrix)
 {
 	for (int i = 0; i < matrix.dimension; ++i) {
 		for (int j = 0; j < matrix.dimension; ++j) {
-			out << matrix.contents[i * matrix.dimension + j];
+			out << std::setw(7) << matrix.contents[i * matrix.dimension + j];
 		}
 		out << "\n";
 	}
@@ -218,6 +236,11 @@ void swap(Matrix & lhs, Matrix & rhs)
 Matrix operator+(Matrix lhs, const Matrix & rhs)
 {
 	lhs += rhs;
+	return lhs;
+}
+
+Matrix operator*(Matrix lhs, const Matrix & rhs) {
+	lhs *= rhs;
 	return lhs;
 }
 

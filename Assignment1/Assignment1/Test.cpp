@@ -1,10 +1,12 @@
-#include "Matrix.hpp"
+#include "PageRank.hpp"
 
 int main() {
 	using std::cout;	
 	using std::endl;
-	Matrix a = Matrix("c:\\test.txt");
-	cout << a << endl;
+	Matrix ab = Matrix("c:\\test.txt");
+	PageRank a = PageRank("c:\\test.txt");
+	a.importance();
+	a.print_prob_matrix();
 	system("pause");
 	
 }
