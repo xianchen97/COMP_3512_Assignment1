@@ -10,7 +10,33 @@ int main() {
 	a.generateQ();
 	cout << "\n";
 	a.print_matrix_Q(); 
-	cout << a.transition() << endl;
+	a.transition();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+
+	a.multiply();
+	a.multiply();
+	a.multiply();
+
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
+	a.multiply();
 	system("pause");
-	
+	a.multiply();
 }

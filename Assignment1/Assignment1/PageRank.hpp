@@ -8,9 +8,11 @@ class PageRank {
 	Matrix user_matrix;
 	Matrix matrix_Q;
 	Matrix matrix_M;
+	Matrix trans;
 
 	int matrix_dim;
 	double * dynamical;
+	double * dynamicalMult;
 
 
 public:
@@ -21,8 +23,6 @@ public:
 	void importance();
 	void generateQ();
 	Matrix transition();
-
-
 	void multiply();
 
 	

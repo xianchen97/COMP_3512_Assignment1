@@ -16,7 +16,7 @@ public:
 	Matrix(std::string);
 	~Matrix();
 	void set_value(int, int, double);
-	int get_value(int, int) const;
+	double get_value(int, int) const;
 	int get_dimension();
 	void clear();
 	Matrix identity();

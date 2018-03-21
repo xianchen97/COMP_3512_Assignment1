@@ -110,7 +110,6 @@ void PageRank::multiply() {
 		}
 	}
 	dynamical = dynamicalMult;
-	x`
 	std::cout << "\n--------------------------------- " << std::endl;
 }
 
