@@ -100,19 +100,49 @@ PRECONDITION: Both Matrixes initialized
 POSTCONDITION: Matrix multiplied with
 */
 void PageRank::multiply() {
-	for (int i = 0; i < matrix_dim; i++) {
-		for (int j = 0; j < 1; j++) {
-			double sum = 0.0;
-			for (int k = 0; k < 4; k++) 
-				sum += (trans.get_value(i, k) * dynamical[k * 1 + j]);
-			std::cout << "\nThe sum is: " << (sum);
-			dynamicalMult[i * 1 + j] = sum;
+	double sum = 0.0;
+	double * m = new double(matrix_dim);
+	bool equals = false;
+	do {
+		bool currEquals = true;
+		for (int i = 0; i < matrix_dim; i++) {
+			for (int j = 0; j < 1; j++) {
+				for (int k = 0; k < matrix_dim; k++) {
+					sum = sum + (trans.get_value(i, k) * dynamical[k * 1 + j]);
+
+				}
+				dynamicalMult[(i * 1) + j] = sum;
+				if (dynamical[(i * 1) + j] != dynamicalMult[(i * 1) + j]) {
+					currEquals = false;
+				}
+				equals = currEquals;
+				sum = 0;
+			}
 		}
-	}
-	dynamical = dynamicalMult;
-	x`
-	std::cout << "\n--------------------------------- " << std::endl;
+
+		for (int i = 0; i < matrix_dim; i++) {
+			dynamical[i] = dynamicalMult[i];
+		}
+	} while (equals == false);
 }
 
+void PageRank::print_dynamical() {
+	std::cout << "The dynamical matrix: \n";
+	for (int i = 0; i < matrix_dim; i++) {
+		std::cout << dynamical[i] << std::endl;
+	}
+}
+
+void PageRank::print_percent(){
+	double sum = 0.0;
+	for (int i = 0; i < matrix_dim; i++) {
+		sum += dynamical[i];
+	}
+	std::cout << "\nRANK : " << std::endl;
+	for (int i = 0; i < matrix_dim; i++) {
+		std::cout << dynamical[i] << "/" << sum << " = " << dynamical[i]/sum << std::endl; 
+	}
+
+}
 
 

@@ -24,6 +24,9 @@ public:
 	void generateQ();
 	Matrix transition();
 	void multiply();
+	void print_dynamical();
+
+	void print_percent();
 
 	
 };
