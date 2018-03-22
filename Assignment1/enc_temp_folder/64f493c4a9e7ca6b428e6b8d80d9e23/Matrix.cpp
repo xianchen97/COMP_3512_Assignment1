@@ -49,21 +49,8 @@ Matrix::Matrix(int an_array[], int size)
 
 /*
 The matrix reads a text file and creates a matrix.
-
 PRECONDITION: User file exists and correct path is passed in.
-The text file must contain a matrix of nxn with the following format:
-0 0 0
-0 0 0
-0 0 0  
-
-0 0 0 0
-0 0 0 0
-0 0 0 0
-0 0 0 0
-
-Each text file can contain only one matrix at a time.
 POSTCONDITION: Matrix created based on input of the text file.
-
 */
 Matrix::Matrix(std::string user_input) {
 
@@ -143,10 +130,6 @@ void Matrix::clear()
 	}
 }
 
-
-/*
-Creates the matrix identity.
-*/
 Matrix Matrix::identity()
 {
 	Matrix identity(dimension);

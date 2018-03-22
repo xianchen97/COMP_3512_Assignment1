@@ -126,7 +126,6 @@ void PageRank::multiply() {
 	} while (equals == false);
 }
 
-/* This method prints out the dynamical matrix */
 void PageRank::print_dynamical() {
 	std::cout << "The dynamical matrix: \n";
 	for (int i = 0; i < matrix_dim; i++) {
@@ -134,7 +133,6 @@ void PageRank::print_dynamical() {
 	}
 }
 
-/* Prints the rank of the dynamical matrix */
 void PageRank::print_percent(){
 	double sum = 0.0;
 	for (int i = 0; i < matrix_dim; i++) {
